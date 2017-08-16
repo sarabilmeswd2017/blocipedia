@@ -21,7 +21,8 @@ source 'https://rubygems.org'
  gem 'bootstrap'
  gem 'figaro'
  gem 'devise'
- 
+
+
 
  group :development, :test do
    gem 'byebug'
