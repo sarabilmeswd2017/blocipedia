@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :wiki
-
   devise_for :users
 
-  root to: 'home#index'
+  resources :wiki
+
+  root 'home#index'
 
 
 end
