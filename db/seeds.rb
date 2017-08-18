@@ -15,7 +15,8 @@ u = User.create(
  # #2
      title:  RandomData.random_sentence,
      body:   RandomData.random_paragraph,
-     private: false
+     private: false,
+     user: u
    )
  end
  wikis = Wiki.all
