@@ -1,6 +1,14 @@
 require 'random_data'
 
- # Create Wikis
+
+u = User.create(
+  name: 'joe user',
+  email: 'joe@user.com',
+  password: 'password',
+  confirmed_at: Time.now
+)
+
+# Create Wikis
  50.times do
  # #1
    Wiki.create!(
