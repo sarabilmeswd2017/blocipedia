@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :wiki
+  resources :wikis
 
   root 'home#index'
 

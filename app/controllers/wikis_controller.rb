@@ -1,4 +1,4 @@
-class WikiController < ApplicationController
+class WikisController < ApplicationController
   def index
     @wikis = Wiki.all
   end
@@ -21,7 +21,7 @@ class WikiController < ApplicationController
     @wiki.body = params[:wiki][:body]
     @wiki.private = params[:wiki][:private]
 
-    
+
 
   if @wiki.save
       flash[:notice] = "Wiki was saved."
