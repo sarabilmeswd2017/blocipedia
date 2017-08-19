@@ -33,8 +33,10 @@ class WikisController < ApplicationController
   end
 
   def update
-    @wiki = Post.find(params[:id])
+    @wiki = Wiki.find(params[:id])
     @wiki.assign_attributes(wiki_params)
+
+
 
     if @wiki.save
       flash[:notice] = "Wiki was updated."
@@ -45,8 +47,9 @@ class WikisController < ApplicationController
     end
   end
 
+
     def destroy
-     @wiki = Post.find(params[:id])
+     @wiki = Wiki.find(params[:id])
 
      if @wiki.destroy
        flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."

@@ -9,9 +9,9 @@ RSpec.describe WikisController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
-    it "assigns Wiki.all to wiki" do
+    it "assigns my_wiki to @wiki" do
       get :index
-      expect(assigns(:wikis)).to eq([my_wiki])
+      expect(assigns(:wiki)).to eq(my_wiki)
     end
   end
 
@@ -61,7 +61,7 @@ RSpec.describe WikisController, type: :controller do
 
     it "redirects to the new wiki" do
       post :create, wiki: {title: RandomData.random_sentence, body: RandomData.random_paragraph, private: false}
-      expect(response).to redirect_to [Wiki.last]
+      expect(response).to redirect_to Wiki.last
     end
   end
 
@@ -104,7 +104,7 @@ RSpec.describe WikisController, type: :controller do
       new_body = RandomData.random_paragraph
 
       put :update, id: my_wiki.id, wiki: {title: new_title, body: new_body}
-      expect(response).to redirect_to [my_wiki]
+      expect(response).to redirect_to my_wiki
     end
   end
 
