@@ -42,11 +42,11 @@ class WikisController < ApplicationController
     @wiki.assign_attributes(wiki_params)
     authorize @wiki
 
-    if @wiki.update_attributes(permitted_attributes(@wiki))
-      redirect_to @wiki
-    else
-      render :edit
-    end
+    #if @wiki.update_attributes(permitted_attributes(@wiki))
+      #redirect_to @wiki
+    #else
+      #render :edit
+    #end
 
     if @wiki.save
       flash[:notice] = "Wiki was updated."
@@ -60,7 +60,7 @@ class WikisController < ApplicationController
 
     def destroy
      @wiki = Wiki.find(params[:id])
-
+     authorize @wiki
      if @wiki.destroy
        flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
        redirect_to @wiki

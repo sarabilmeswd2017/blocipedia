@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :wikis
 
-  root 'home#index'
+  root to: 'home#index'
 
 
 end

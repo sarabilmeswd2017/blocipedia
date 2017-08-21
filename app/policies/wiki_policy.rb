@@ -18,11 +18,15 @@ class WikiPolicy < ApplicationPolicy
 
 
   def update?
-    user.admin? or not post.published?
+    user.admin? or not wiki.published? || record.user == user
+  end
+
+  def destroy?
+    user.admin? || record.user == user
   end
 
   def permitted_attributes
-    if user.admin? || user.owner_of?(post)
+    if user.admin? || user.owner_of?(wiki)
       [:title, :body, :tag_list]
     else
       [:tag_list]
