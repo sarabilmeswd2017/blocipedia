@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  before_action :require_login
+
 
   before_action :authenticate_user!
 
@@ -18,9 +18,8 @@ class ApplicationController < ActionController::Base
   #end
 
 
-  def user_not_authorized(exception)
-   policy_name = exception.policy.class.to_s.underscore
-   flash[:warning] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
+  def user_not_authorized
+   flash[:alert] = "You are not authorized to perform this action."
    redirect_to(request.referrer || root_path)
  end
   #after_action :verify_authorized, except: :index

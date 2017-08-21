@@ -3,8 +3,8 @@ class WikisController < ApplicationController
   #after_action :verify_policy_scoped, only: :index
 
   def index
-    #@wikis = Wiki.all
-     @wikis = policy_scope(Wiki)
+    @wikis = Wiki.all
+
   end
 
   def show
@@ -13,22 +13,18 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new
-    authorize @wiki
+
   end
 
   def edit
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def create
-    @wiki = Wiki.new
-    @wiki.title = params[:wiki][:title]
-    @wiki.body = params[:wiki][:body]
-    @wiki.private = params[:wiki][:private]
+    @wiki = current_user.wikis.new(wiki_params)
 
-
-
-  if @wiki.save
+    if @wiki.save
       flash[:notice] = "Wiki was saved."
        redirect_to [@wiki]
      else
@@ -39,16 +35,10 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-    @wiki.assign_attributes(wiki_params)
+
     authorize @wiki
 
-    #if @wiki.update_attributes(permitted_attributes(@wiki))
-      #redirect_to @wiki
-    #else
-      #render :edit
-    #end
-
-    if @wiki.save
+    if @wiki.update(wiki_params)
       flash[:notice] = "Wiki was updated."
       redirect_to [@wiki]
     else
@@ -71,7 +61,11 @@ class WikisController < ApplicationController
    end
 
 
+  private
 
+  def wiki_params
+    params.require(:wiki).permit(:title, :body, :private)
+  end
 
 
 end
