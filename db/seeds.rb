@@ -39,8 +39,8 @@ users = User.all
   Wiki.create!(
   title:  Faker::Name.title,
   body:   Faker::Lorem.paragraph,
-  private: false
-
+  private: false,
+  user: users.sample
   )
 end
 wikis = Wiki.all
