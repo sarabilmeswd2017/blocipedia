@@ -22,7 +22,7 @@ source 'https://rubygems.org'
  gem 'figaro'
  gem 'devise'
  gem 'pundit'
-
+ gem 'faker'
 
 
  group :development, :test do
