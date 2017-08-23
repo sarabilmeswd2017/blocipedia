@@ -4,3 +4,9 @@
 <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
 
 <%= link_to "View Wikis", wikis_path, class: 'btn btn-success' %>
+
+<% if current_user.standard? %>
+  <%= link_to "Upgrade Account", new_charge_path, class: 'btn btn-success' %>
+<% else %>
+  <%= link_to "Downgrade Account", downgrades_path, class: 'btn btn-success', method: :post %>
+<% end %>
