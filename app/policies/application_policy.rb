@@ -48,7 +48,13 @@ class ApplicationPolicy
     end
 
     def resolve
-      scope
+
+      if (user.admin?) || (user.premium?) || (current_user = user.wiki)
+        wikis = scope.all
+      else
+        wikis = Wiki.publicly_visible
+      end
+      wikis
     end
   end
 

@@ -29,6 +29,8 @@ class WikiPolicy < ApplicationPolicy
     update?
   end
 
+  
+
 
 
 
