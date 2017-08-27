@@ -40,4 +40,33 @@ end
 def self.user_roles
   USER_ROLES
 end
+
+def markdown(text)
+
+  options = {
+    hard_wrap: true,
+    safe_links_only: true,
+    filter_html: true
+  }
+
+  extensions = {
+    autolink: true,
+    tables: true,
+    space_after_headers: true,
+    footnotes: true,
+    fenced_code_blocks: true,
+  }
+
+  renderer = Redcarpet::Render::HTML.new(options)
+  markdown = Redcarpet::Markdown.new(renderer, extensions)
+
+  markdown.render(text).html_safe
+end
+
+# def markdown(text)
+#   options = [:hard_wrap, :filter_html, :autolink, :no_intraemphasis]
+#   Redcarpet.new(text, *options).to_html.html.safe
+# end
+
+
 end
