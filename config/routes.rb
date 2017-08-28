@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :wikis
   resources :charges, only: [:new, :create]
   resources :downgrades, only: [:create]
+  resources :collaborators, only: [:new, :create, :delete]
   root to: 'home#index'
 
 

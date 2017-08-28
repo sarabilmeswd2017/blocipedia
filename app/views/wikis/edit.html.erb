@@ -11,5 +11,9 @@
    </div>
    <div class="col-md-8">
      <%= render partial: 'form', locals: { wiki: @wiki } %>
+       <% if wiki.params[:private] == true %>
+         <%= link_to "Add Collaborators", collaborators_path, class: 'btn btn-success' %>
+         <%= link_to "Remove Collaborators", collaborators_path, class: 'btn btn-danger' %>
+      <% end %>
    </div>
  </div>

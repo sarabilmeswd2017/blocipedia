@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   #def wikis
     #Wikis.where(id: collaborators.pluck(:wiki_id))
-    collaborators.wikis
+    #collaborators.wikis
   #end
 
 

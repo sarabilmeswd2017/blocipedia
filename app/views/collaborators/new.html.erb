@@ -1,0 +1,14 @@
+<h1> New Collaborator </h1>
+  <%= form_for @collaborator do |f| %>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, autofocus: true %>
+    </div>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Add Collaborator" %>
+    </div>
+  <% end %>
