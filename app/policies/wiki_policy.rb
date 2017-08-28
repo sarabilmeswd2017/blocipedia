@@ -12,6 +12,10 @@ class WikiPolicy < ApplicationPolicy
     update?
   end
 
+  def manage_collaborators?
+    user.premium? && (record.user == user || record.users.include?(user))
+  end
+
 
   class Scope
    attr_reader :user, :scope

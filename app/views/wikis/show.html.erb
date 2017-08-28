@@ -19,25 +19,26 @@
   <%= link_to "View Wikis", wikis_path, class: 'btn btn-success' %>
 </div>
 
-<div class="row">
-  <div class="col-md-6">
-    <%= form_tag collaborators_path do  %>
-      <%= label_tag 'Enter user email:' %>
-      <%= text_field_tag :email %>
-      <%= hidden_field_tag :wiki_id, @wiki.id %>
-      <%= submit_tag 'Add collaborator' %>
-    <% end %>
-  </div>
-  <div class="col-md-6">
-    <h3>Remove collaborators</h3>
-    <% @wiki.users.each do |user| %>
-      <p><%= user.email %></p>
-      <%= link_to 'Remove', collaborator_path(user_id: user.id, wiki_id: @wiki.id), method: :delete, class: 'btn btn-danger' %>
-    <% end %>
-  </div>
-</div>
-<h3>Manage collaborators</h3>
 
+<% if policy(@wiki).manage_collaborators? %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= form_tag collaborators_path do  %>
+        <%= label_tag 'Enter user email:' %>
+        <%= text_field_tag :email %>
+        <%= hidden_field_tag :wiki_id, @wiki.id %>
+        <%= submit_tag 'Add collaborator' %>
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <h3>Remove collaborators</h3>
+      <% @wiki.users.each do |user| %>
+        <p><%= user.email %></p>
+        <%= link_to 'Remove', collaborator_path(user_id: user.id, wiki_id: @wiki.id), method: :delete, class: 'btn btn-danger' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
 
 
