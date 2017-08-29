@@ -1,33 +1,25 @@
 class CollaboratorsController < ApplicationController
-  def new
-
-    @collaborator = User.new
-  end
-
   def create
-    
-    @collaborator = User.new
-
+    @user = User.find_by(email: params[:email])
+    @wiki = Wiki.find_by(params[:wiki_id])
+    @collaborator = Collaborator.new(user_id: @user_id, wiki_id: @wiki_id)
     if @collaborator.save
       flash[:notice] = "Collaborator was saved"
-      redirect_to [new_collaborator_path]
-
     else
-      flash.now[:alert] = "There was an error saving the wiki. Please try again."
-      render :new
+      flash[:alert] = "There was an error saving the wiki. Please try again."
     end
-
+    redirect_to @wiki
   end
 
   def destroy
-    @wiki = Wiki.find(params[:id])
-
+    @wiki = Wiki.find_by(params[:wiki_id])
+    @user = User.find_by(params[:user_id])
+    @collaborator = Collaborator.find_by(user_id: @user_id, wiki_id: @wiki_id)
     if @collaborator.destroy
-      flash[:notice] = "\"#{@collaborator}\" was deleted"
-      redirect_to [edit_wiki_path]
+      flash[:notice] = "\"#{@user.email}\" was deleted"
     else
-      flash.now[:alert] = "There was an error deleting the collaborator."
-      render [edit_wiki_path]
+      flash[:alert] = "There was an error deleting the collaborator."
     end
+    redirect_to @wiki
   end
 end

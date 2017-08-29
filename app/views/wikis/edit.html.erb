@@ -1,6 +1,5 @@
 <h1>Edit Wiki</h1>
-
- <div class="row">
+<div class="row">
    <div class="col-md-4">
      <p>Guidelines for wikis</p>
      <ul>
@@ -10,10 +9,6 @@
      </ul>
    </div>
    <div class="col-md-8">
-     <%= render partial: 'form', locals: { wiki: @wiki } %>
-       <% if wiki.params[:private] == true %>
-         <%= link_to "Add Collaborators", collaborators_path, class: 'btn btn-success' %>
-         <%= link_to "Remove Collaborators", collaborators_path, class: 'btn btn-danger' %>
-      <% end %>
+     <%= render 'form' %>
    </div>
- </div>
+</div>
