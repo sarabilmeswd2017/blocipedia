@@ -25,7 +25,7 @@
         <%= form_tag collaborators_path do %>
           <%= label_tag 'Enter user email:' %>
           <%= text_field_tag :email %>
-          <%= hidden_field_tag :wiki_id, @wiki_id %>
+          <%= hidden_field_tag :wiki_id, @wiki.id %>
           <%= submit_tag "Add Collaborator" %>
        <% end %>
       </div>
@@ -33,7 +33,7 @@
         <h3>Remove Collaborators</h3>
         <% @wiki.users.each do |user| %>
           <p> <%= user.email %> </p>
-          <%= link_to 'Remove', collaborator_path(user_id: @user_id, wiki_id: @wiki_id), method: :delete, class: 'btn btn-danger' %>
+          <%= link_to 'Remove', collaborator_path(user_id: user.id, wiki_id: @wiki.id), method: :delete, class: 'btn btn-danger' %>
         <% end %>
      </div>
    </div>
