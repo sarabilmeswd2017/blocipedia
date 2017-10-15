@@ -28,3 +28,9 @@ $(document).on('turbolinks:load', function() {
     blocmetrics.report('clicked on new wiki');
   })
 })
+
+$(document).on('turbolinks:load', function() {
+  $('.delete-wiki').click(function() {
+    blocmetrics.report('deleted a wiki');
+  })
+})
